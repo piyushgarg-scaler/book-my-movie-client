@@ -3,6 +3,7 @@ import "./App.css";
 
 import SigninScreen from "./screens/signin";
 import { useCurrentUser } from "./hooks/query/user";
+import AdminPage from "./screens/admin";
 
 function App() {
   const { user } = useCurrentUser();
@@ -14,6 +15,7 @@ function App() {
       <Route path="/" element={<h1>Hey {user?.firstName}</h1>} />
       <Route path="/signin" element={<SigninScreen />} />
       <Route path="/signup" element={<h1>Signup</h1>} />
+      <Route path="/admin" element={<AdminPage />} />
     </Routes>
   );
 }
