@@ -13,3 +13,15 @@ export const useGetAllMovies = () => {
 
     return { ...query, movies: query?.data?.movies, page: query?.data?.page }
 }
+
+export const useGetMovieById = (id) => {
+    const queryById = useQuery({
+        queryKey: ['movieById'],
+        queryFn: async () => {
+            const { data } = await apiV1Instance.get(`/movies/${id}`)
+            return data.data
+        }
+    })
+
+    return { ...queryById, movie: queryById?.data?.movie}
+}
