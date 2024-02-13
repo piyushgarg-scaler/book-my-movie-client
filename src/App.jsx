@@ -14,12 +14,11 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<h1>Hey {user?.firstName}</h1>} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/movie/:id" element={<MovieByIdPage />} />
       <Route path="/signin" element={<SigninScreen />} />
       <Route path="/signup" element={<h1>Signup</h1>} />
       <Route path="/admin" element={<AdminPage />} />
-      <Route path="/home" element={<HomePage />} />
-      <Route path="/movieById/:id" element={<MovieByIdPage />} />
     </Routes>
   );
 }
