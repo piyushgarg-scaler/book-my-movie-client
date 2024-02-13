@@ -22,7 +22,7 @@ const MovieByIdPage = () => {
             cover={
               <img
                 alt="example"
-                src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
               />
             }
           >
