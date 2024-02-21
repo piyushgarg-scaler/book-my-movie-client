@@ -16,7 +16,7 @@ export const useGetAllMovies = () => {
 
 export const useGetMovieById = (id) => {
     const query = useQuery({
-        queryKey: ['movieById'],
+        queryKey: ['movies', id],
         queryFn: async () => {
             const { data } = await apiV1Instance.get(`/movies/${id}`)
             return data.data
@@ -24,4 +24,17 @@ export const useGetMovieById = (id) => {
     })
 
     return { ...query, movie: query?.data?.movie }
+}
+
+export const useGetMovieSchedule = (id) => {
+
+    const query = useQuery({
+        queryKey: ['movie', 'schedule', id],
+        queryFn: async () => {
+            const { data } = await apiV1Instance.get(`/movies/${id}/schedule`)
+            return data.data
+        }
+    })
+
+    return { ...query, schedule: query?.data?.schedule }
 }

@@ -1,14 +1,16 @@
 import { useParams } from "react-router-dom";
-import { Card, Flex } from "antd";
-import { useGetMovieById } from "../../hooks/query/movie";
+import { Button, Card, Flex } from "antd";
+import { useGetMovieById, useGetMovieSchedule } from "../../hooks/query/movie";
 
 const { Meta } = Card;
 
 const MovieByIdPage = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetMovieById(id);
+  const { data: movieSchduleData, isLoading: scheduleLoading } =
+    useGetMovieSchedule(id);
 
-  if (isLoading) {
+  if (isLoading || scheduleLoading) {
     return <>Loading movie by ID page</>;
   }
 
@@ -31,6 +33,29 @@ const MovieByIdPage = () => {
               description={data.movie.description}
             />
           </Card>
+          <div>
+            {movieSchduleData &&
+              movieSchduleData.schedule.map((e) => (
+                <div
+                  style={{
+                    borderRadius: "10px",
+                    padding: "10px",
+                  }}
+                  key={e._id}
+                >
+                  <p>Theatre: {e.theatre.name}</p>
+                  <p>Start Time: {new Date(e.startTime).toLocaleString()}</p>
+                  <p>
+                    Price:{" "}
+                    {e.price.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "INR",
+                    })}
+                  </p>
+                  <Button>Book Show</Button>
+                </div>
+              ))}
+          </div>
         </Flex>
       ) : (
         <h1>Movie Not Found</h1>
